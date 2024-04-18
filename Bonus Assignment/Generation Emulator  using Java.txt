@@ -1,0 +1,33 @@
+import java.time.LocalDateTime;
+import java.util.Random;
+
+public class SampleDataGenerator {
+    public static void main(String[] args) {
+        // Define the range of timestamps (start and end dates)
+        LocalDateTime startDate = LocalDateTime.of(2024, 1, 1, 0, 0);
+        LocalDateTime endDate = LocalDateTime.of(2024, 1, 31, 23, 59);
+
+        // Generate sample data
+        generateSampleData(startDate, endDate);
+    }
+
+    public static void generateSampleData(LocalDateTime startDate, LocalDateTime endDate) {
+        // Initialize random number generator
+        Random random = new Random();
+
+        // Iterate over the time range and generate sample data
+        LocalDateTime currentDateTime = startDate;
+        while (currentDateTime.isBefore(endDate)) {
+            // Generate random values for machine status and vibration
+            int machineStatus = random.nextInt(2); // 0 or 1
+            int vibration = random.nextInt(1000); // Any integer between 0 and 999
+
+            // Print the generated sample data
+            System.out.println("Timestamp: " + currentDateTime + ", Machine Status: " + machineStatus + ", Vibration: " + vibration);
+
+            // Move to the next timestamp (increment by a random number of hours)
+            int hoursToAdd = random.nextInt(24); // Any integer between 0 and 23
+            currentDateTime = currentDateTime.plusHours(hoursToAdd);
+        }
+    }
+}
